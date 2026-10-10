@@ -34,7 +34,12 @@
             };
             //]]>
         </script>
-        <b:skin><![CDATA[
+        <b:skin><![CDATA[/*
+<Variable name='headerUserName' description='Nama paparan header' type='string' default='Alam Santiko Wibowo' value='Alam Santiko Wibowo'/>
+<Variable name='headerUserRole' description='Teks status/kelas header' type='string' default='Kelas Prioritas' value='Kelas Prioritas'/>
+<Variable name='headerAvatarIcon' description='Ikon avatar header (Material Icons)' type='string' default='admin_panel_settings' value='admin_panel_settings'/>
+<Variable name='headerNotifyIcon' description='Ikon notifikasi header (Material Icons)' type='string' default='notifications' value='notifications'/>
+*/
             /* ===== Base ===== */
             html { -webkit-text-size-adjust: 100%; }
             body {
@@ -606,22 +611,31 @@
                         </button>
                         <div class='icon-text account-status flex min-w-0 items-center gap-2'>
                             <i class='material-icons text-indigo-600'>school</i>
-                            <span class='show kelas truncate text-sm font-bold text-slate-800'>Kelas Prioritas</span>
+                            <span class='show kelas truncate text-sm font-bold text-slate-800'>
+                                <data:headerUserRole/>
+                            </span>
                         </div>
                     </div>
                     <div class='icon-text account flex shrink-0 items-center gap-2 sm:gap-4'>
-                        <button aria-label='Notifikasi' class='relative grid h-9 w-9 place-items-center rounded-xl border border-slate-200 text-slate-600 transition hover:bg-slate-100 sm:h-10 sm:w-10' type='button'>
-                            <span class='absolute -right-1 -top-1 grid h-4 min-w-[1rem] place-items-center rounded-full bg-rose-500 px-1 text-[10px] font-bold leading-none text-white'>0</span>
-                            <i class='material-icons text-xl'>notifications</i>
+                        <button aria-label='Notifikasi' class='grid h-9 w-9 place-items-center rounded-xl border border-slate-200 text-slate-600 transition hover:bg-slate-100 sm:h-10 sm:w-10' type='button'>
+                            <i class='material-icons text-xl'>
+                                <data:headerNotifyIcon/>
+                            </i>
                         </button>
                         <div class='hidden items-center gap-3 rounded-xl border border-slate-200 bg-slate-50 py-1.5 pl-3 pr-1.5 md:flex'>
-                            <span class='text-sm font-semibold text-slate-700' id='account'>Alam Santiko Wibowo</span>
+                            <span class='text-sm font-semibold text-slate-700' id='account'>
+                                <data:headerUserName/>
+                            </span>
                             <span class='grid h-8 w-8 place-items-center rounded-lg bg-gradient-to-br from-indigo-500 to-violet-600 text-white'>
-                                <i class='material-icons text-lg'>admin_panel_settings</i>
+                                <i class='material-icons text-lg'>
+                                    <data:headerAvatarIcon/>
+                                </i>
                             </span>
                         </div>
                         <span class='grid h-9 w-9 place-items-center rounded-lg bg-gradient-to-br from-indigo-500 to-violet-600 text-white md:hidden'>
-                            <i class='material-icons text-lg'>admin_panel_settings</i>
+                            <i class='material-icons text-lg'>
+                                <data:headerAvatarIcon/>
+                            </i>
                         </span>
                     </div>
                 </header>
@@ -814,11 +828,11 @@
                                         <div class='post-meta mt-3 flex flex-wrap items-center gap-x-4 gap-y-1.5 border-b border-slate-100 pb-4 text-xs text-slate-500 sm:mt-4 sm:gap-x-5 sm:pb-5 sm:text-sm'>
                                             <span class='post-author inline-flex items-center gap-1.5 font-medium text-slate-600'>
                                                 <i class='material-icons text-base text-indigo-500'>person</i>
-                                                <data:post.author/>
+                                                <data:post.author.name/>
                                             </span>
                                             <span class='post-timestamp inline-flex items-center gap-1.5'>
                                                 <i class='material-icons text-base text-indigo-500'>schedule</i>
-                                                <data:post.timestamp/>
+                                                <data:post.date/>
                                             </span>
                                         </div>
                                         <div class='post-reader-tools mt-4 flex flex-wrap items-center justify-between gap-3 rounded-xl border border-slate-200 bg-slate-50 px-3 py-2'>
@@ -844,7 +858,7 @@
                                         <article class='post group flex flex-col rounded-2xl border border-slate-200 bg-white p-3.5 shadow-sm transition duration-300 hover:-translate-y-1 hover:border-indigo-200 hover:shadow-soft sm:p-5'>
                                             <div class='mb-2 inline-flex items-center gap-1.5 text-[11px] font-semibold uppercase tracking-wider text-slate-400'>
                                                 <i class='material-icons text-sm'>schedule</i>
-                                                <data:post.timestamp/>
+                                                <data:post.date/>
                                             </div>
                                             <h2 class='post-title text-base font-bold leading-snug text-slate-900 transition group-hover:text-indigo-600 sm:text-lg'>
                                                 <a expr:href='data:post.url'><data:post.title/></a>
