@@ -35,10 +35,10 @@
             //]]>
         </script>
         <b:skin><![CDATA[/*
-<Variable name='headerUserName' description='Nama paparan header' type='string' default='Alam Santiko Wibowo' value='Alam Santiko Wibowo'/>
-<Variable name='headerUserRole' description='Teks status/kelas header' type='string' default='Kelas Prioritas' value='Kelas Prioritas'/>
-<Variable name='headerAvatarIcon' description='Ikon avatar header (Material Icons)' type='string' default='admin_panel_settings' value='admin_panel_settings'/>
-<Variable name='headerNotifyIcon' description='Ikon notifikasi header (Material Icons)' type='string' default='notifications' value='notifications'/>
+<Variable name="headerUserName" description="Nama paparan header" type="string" default="Alam Santiko Wibowo" value="Alam Santiko Wibowo"/>
+<Variable name="headerUserRole" description="Teks status/kelas header" type="string" default="Kelas Prioritas" value="Kelas Prioritas"/>
+<Variable name="headerAvatarIcon" description="Ikon avatar header (Material Icons)" type="string" default="admin_panel_settings" value="admin_panel_settings"/>
+<Variable name="headerNotifyIcon" description="Ikon notifikasi header (Material Icons)" type="string" default="notifications" value="notifications"/>
 */
             /* ===== Base ===== */
             html { -webkit-text-size-adjust: 100%; }
