@@ -553,41 +553,85 @@
 
             <aside id='side' class='fixed inset-y-0 left-0 z-50 flex w-72 -translate-x-full flex-col bg-ink-900 text-white shadow-2xl transition-transform duration-300 ease-out lg:translate-x-0'>
                 <div class='brand flex h-14 shrink-0 items-center justify-between gap-2 border-b border-white/10 bg-ink-800 px-4 sm:h-16 sm:px-5'>
-                    <span class='truncate text-base font-extrabold tracking-tight text-white'>
+                    <a class='truncate text-base font-extrabold tracking-tight text-white' href='/'>
                         <data:blog.title/>
-                    </span>
+                    </a>
                     <button aria-label='Tutup menu' id='sidebar-close' type='button' class='grid h-9 w-9 shrink-0 place-items-center rounded-lg text-white/70 transition hover:bg-white/10 hover:text-white lg:hidden'>
                         <i class='material-icons'>close</i>
                     </button>
                 </div>
-                <div class='wrapper flex-1 overflow-y-auto p-4'>
-                    <p class='px-3 pb-3 text-[11px] font-bold uppercase tracking-widest text-white/40'>Menu</p>
-                    <ul class='navbar flex flex-col gap-1.5'>
-                        <li>
-                            <a class='group flex items-center gap-3 rounded-xl px-3.5 py-3 text-sm font-semibold text-indigo-100/70 transition hover:bg-white/10 hover:text-white' href='/'>
-                                <i class='material-icons text-xl text-indigo-300/80 transition group-hover:text-white'>dashboard</i>
-                                <span>Dashboard</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a class='group flex items-center gap-3 rounded-xl px-3.5 py-3 text-sm font-semibold text-indigo-100/70 transition hover:bg-white/10 hover:text-white' href='/p/kehadiran.html'>
-                                <i class='material-icons text-xl text-indigo-300/80 transition group-hover:text-white'>map</i>
-                                <span>Kehadiran Saya</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a class='group flex items-center gap-3 rounded-xl px-3.5 py-3 text-sm font-semibold text-indigo-100/70 transition hover:bg-white/10 hover:text-white' href='/p/pembayaran.html'>
-                                <i class='material-icons text-xl text-indigo-300/80 transition group-hover:text-white'>history</i>
-                                <span>Pembayaran</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a class='group flex items-center gap-3 rounded-xl px-3.5 py-3 text-sm font-semibold text-indigo-100/70 transition hover:bg-white/10 hover:text-white' href='/p/materi.html'>
-                                <i class='material-icons text-xl text-indigo-300/80 transition group-hover:text-white'>book</i>
-                                <span>Materi Bootcamp</span>
-                            </a>
-                        </li>
-                    </ul>
+                <div class='wrapper flex-1 space-y-6 overflow-y-auto p-4'>
+                    <div>
+                        <p class='px-1 pb-2.5 text-[11px] font-bold uppercase tracking-widest text-white/40'>Statistik</p>
+                        <div class='grid grid-cols-3 gap-2'>
+                            <div class='rounded-xl bg-white/5 px-2 py-3 text-center'>
+                                <i class='material-icons text-lg text-indigo-300'>article</i>
+                                <p class='mt-1 text-base font-extrabold leading-none text-white' id='stat-posts'>-</p>
+                                <p class='mt-1 text-[10px] leading-none text-white/50'>Materi</p>
+                            </div>
+                            <div class='rounded-xl bg-white/5 px-2 py-3 text-center'>
+                                <i class='material-icons text-lg text-indigo-300'>forum</i>
+                                <p class='mt-1 text-base font-extrabold leading-none text-white' id='stat-comments'>-</p>
+                                <p class='mt-1 text-[10px] leading-none text-white/50'>Komentar</p>
+                            </div>
+                            <div class='rounded-xl bg-white/5 px-2 py-3 text-center'>
+                                <i class='material-icons text-lg text-indigo-300'>visibility</i>
+                                <p class='mt-1 text-base font-extrabold leading-none text-white' id='stat-views'>-</p>
+                                <p class='mt-1 text-[10px] leading-none text-white/50'>Dilihat</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <p class='px-1 pb-2.5 text-[11px] font-bold uppercase tracking-widest text-white/40'>Artikel Terbanyak</p>
+                        <b:section class='sidebar' id='sidebar' showaddelement='false'>
+                            <b:widget id='PopularPosts1' locked='false' title='' type='PopularPosts' version='2' visible='true'>
+                                <b:widget-settings>
+                                    <b:widget-setting name='numItemsToShow'>5</b:widget-setting>
+                                    <b:widget-setting name='showThumbnails'>false</b:widget-setting>
+                                    <b:widget-setting name='showSnippets'>false</b:widget-setting>
+                                    <b:widget-setting name='timeRange'>ALL_TIME</b:widget-setting>
+                                </b:widget-settings>
+                                <b:includable id='main'>
+                                    <ul class='flex flex-col gap-2'>
+                                        <b:loop values='data:posts' var='post'>
+                                            <li>
+                                                <a class='group flex items-start gap-2.5 rounded-xl bg-white/5 p-2.5 text-sm font-semibold text-indigo-100/80 transition hover:bg-white/10 hover:text-white' expr:href='data:post.url'>
+                                                    <i class='material-icons mt-0.5 text-base text-indigo-400/80'>article</i>
+                                                    <span class='leading-snug'><data:post.title/></span>
+                                                </a>
+                                            </li>
+                                        </b:loop>
+                                    </ul>
+                                </b:includable>
+                            </b:widget>
+                            <b:widget id='Stats1' locked='false' title='' type='Stats' version='1' visible='true'>
+                                <b:includable id='main'>
+                                    <div class='hidden'>
+                                        <div expr:id='data:widget.instanceId + "_content"' style='display:none'>
+                                            <b:if cond='data:showGraphicalCounter'>
+                                                <span class='counter-wrapper graph-counter-wrapper' expr:id='data:widget.instanceId + "_totalCount"'></span>
+                                            <b:else/>
+                                                <span class='counter-wrapper text-counter-wrapper' expr:id='data:widget.instanceId + "_totalCount"'></span>
+                                            </b:if>
+                                        </div>
+                                    </div>
+                                </b:includable>
+                            </b:widget>
+                        </b:section>
+                    </div>
+
+                    <div>
+                        <p class='px-1 pb-2.5 text-[11px] font-bold uppercase tracking-widest text-white/40'>Menu</p>
+                        <ul class='navbar flex flex-col gap-1.5'>
+                            <li>
+                                <a class='group flex items-center gap-3 rounded-xl px-3.5 py-3 text-sm font-semibold text-indigo-100/70 transition hover:bg-white/10 hover:text-white' href='/p/kehadiran.html'>
+                                    <i class='material-icons text-xl text-indigo-300/80 transition group-hover:text-white'>map</i>
+                                    <span>Kehadiran Saya</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
                 <div class='shrink-0 border-t border-white/10 p-4'>
                     <div class='flex items-center gap-3 rounded-xl bg-white/5 p-3'>
@@ -834,17 +878,6 @@
                                                 <i class='material-icons text-base text-indigo-500'>schedule</i>
                                                 <data:post.date/>
                                             </span>
-                                        </div>
-                                        <div class='post-reader-tools mt-4 flex flex-wrap items-center justify-between gap-3 rounded-xl border border-slate-200 bg-slate-50 px-3 py-2'>
-                                            <span class='inline-flex items-center gap-1.5 text-[11px] font-bold uppercase tracking-wider text-slate-500'>
-                                                <i class='material-icons text-base text-indigo-500'>format_size</i>
-                                                Saiz teks
-                                            </span>
-                                            <div class='inline-flex items-center gap-1'>
-                                                <button aria-label='Perkecil tulisan' class='reader-btn' data-font='dec' type='button'>A&#8722;</button>
-                                                <button aria-label='Reset saiz tulisan' class='reader-btn' data-font='reset' type='button'>A</button>
-                                                <button aria-label='Perbesar tulisan' class='reader-btn' data-font='inc' type='button'>A+</button>
-                                            </div>
                                         </div>
                                         <div class='post-content mt-4 sm:mt-6'>
                                             <data:post.body/>
@@ -1297,8 +1330,30 @@
                     </b:section>
                 </main>
 
-                <footer class='border-t border-slate-200 bg-white px-3 py-4 text-center text-xs text-slate-400 sm:px-6 sm:py-5 lg:px-8'>
-                    <data:blog.title/> · Dibangun dengan Tailwind CSS
+                <b:if cond='data:view.isSingleItem'>
+                    <div class='reader-dock fixed bottom-4 right-3 z-40 flex flex-col items-center gap-1 rounded-2xl border border-slate-200 bg-white/95 p-1.5 shadow-soft backdrop-blur sm:bottom-6 sm:right-6'>
+                        <span aria-hidden='true' class='grid h-7 w-9 place-items-center rounded-lg text-[11px] font-extrabold text-indigo-500'>Aa</span>
+                        <button aria-label='Perbesar tulisan' class='reader-btn' data-font='inc' type='button'>A+</button>
+                        <button aria-label='Reset saiz tulisan' class='reader-btn' data-font='reset' type='button'>A</button>
+                        <button aria-label='Perkecil tulisan' class='reader-btn' data-font='dec' type='button'>A&#8722;</button>
+                    </div>
+                </b:if>
+
+                <footer class='border-t border-slate-200 bg-white px-3 py-6 sm:px-6 sm:py-8 lg:px-8'>
+                    <div class='mx-auto flex max-w-5xl flex-col items-center justify-between gap-4 text-center sm:flex-row sm:text-left'>
+                        <div class='flex items-center gap-3'>
+                            <span class='grid h-10 w-10 shrink-0 place-items-center rounded-xl bg-gradient-to-br from-indigo-500 to-violet-600 text-white'>
+                                <i class='material-icons text-lg'>school</i>
+                            </span>
+                            <div class='min-w-0'>
+                                <p class='truncate text-sm font-extrabold tracking-tight text-slate-800'><data:blog.title/></p>
+                                <p class='truncate text-xs text-slate-400'>Belajar lebih terarah, setiap hari.</p>
+                            </div>
+                        </div>
+                        <p class='text-xs text-slate-400'>
+                            &#169; <span id='footer-year'>2026</span> <data:blog.title/> &#183; Dibangun dengan Tailwind CSS
+                        </p>
+                    </div>
                 </footer>
             </div>
         </div>
@@ -1328,7 +1383,7 @@
                 });
 
                 var path = window.location.pathname.replace(/\/$/, '') || '/';
-                Array.prototype.forEach.call(side.querySelectorAll('a[href]'), function (a) {
+                Array.prototype.forEach.call(side.querySelectorAll('.navbar a[href]'), function (a) {
                     var href = (a.getAttribute('href') || '').replace(/\/$/, '') || '/';
                     if (href === path) {
                         a.classList.add('bg-white/10', 'text-white');
@@ -1341,6 +1396,35 @@
                     }
                     a.addEventListener('click', closeSidebar);
                 });
+
+                var yearEl = document.getElementById('footer-year');
+                if (yearEl) { yearEl.textContent = new Date().getFullYear(); }
+
+                function setStat(id, value) {
+                    var el = document.getElementById(id);
+                    if (el && value !== null && value !== undefined && value !== '') {
+                        el.textContent = value;
+                    }
+                }
+                if (document.getElementById('stat-posts')) {
+                    fetch('/feeds/posts/default?alt=json&max-results=0')
+                        .then(function (r) { return r.json(); })
+                        .then(function (j) { setStat('stat-posts', j.feed.openSearch$totalResults.$t); })
+                        .catch(function () {});
+                    fetch('/feeds/comments/default?alt=json&max-results=0')
+                        .then(function (r) { return r.json(); })
+                        .then(function (j) { setStat('stat-comments', j.feed.openSearch$totalResults.$t); })
+                        .catch(function () {});
+                    var tries = 0;
+                    var timer = setInterval(function () {
+                        var c = document.getElementById('Stats1_totalCount');
+                        if (c && c.textContent.trim() !== '') {
+                            setStat('stat-views', c.textContent.trim());
+                            clearInterval(timer);
+                        }
+                        if (++tries > 40) { clearInterval(timer); }
+                    }, 250);
+                }
             })();
             //]]>
         </script>
