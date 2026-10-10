@@ -617,8 +617,8 @@
                                     });
                                     //]]>
                                 </script>
-                            </b:if>
-                            <b:if cond='data:view.isSingleItem'>
+                            <b:else/>
+                                <b:if cond='data:view.isSingleItem'>
                                 <b:loop values='data:posts' var='post'>
                                     <article class='post singleViewDesktop mx-auto w-full max-w-4xl rounded-2xl border border-slate-200 bg-white p-6 shadow-soft sm:p-10'>
                                         <h2 class='post-title text-2xl font-extrabold tracking-tight text-slate-900 sm:text-3xl'>
@@ -664,6 +664,7 @@
                                 <div class='mt-8 flex justify-center'>
                                     <b:include name='postPagination'/>
                                 </div>
+                            </b:if>
                             </b:if>
                         </b:includable>
                         <b:includable id='aboutPostAuthor'>
